@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin - Bootstrap Admin Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js"></script>
+        <script>
+$(document).ready(function(){
+  //  alert("ready");
+
+
+$("input#submitButton").click(function(){
+//alert("onj ");
+function1();
+
+});
+
+
+
+});
+
+		
+	function function1(){
+	var dataBody ={};
+	
+	var dataBody = {"Inputs": {"input1": {"ColumnNames":[], "Values" : []} }, 'GlobalParameters' :{}};
+	var inp1 = []; 
+	 var inp2 = [];
+ $("form :input[type='text']").each(function(){
+ 
+ var name = this.name;
+ var value = this.value;
+
+ inp1.push("0");
+
+
+  inp2.push("0");
+	dataBody.Inputs.input1.ColumnNames.push(name);
+
+        });
+		
+		dataBody.Inputs.input1.Values.push(inp1);    
+	dataBody.Inputs.input1.Values.push(inp2); 
+	console.log(JSON.stringify(dataBody));	
+
+//var newObj = "{'Inputs': {'input1': {'ColumnNames': ['instant','dteday','season','yr','mnth','hr','holiday','weekday','workingday','weathersit','temp','atemp','hum','windspeed','casual','registered','cnt'],'Values': [['0','','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0']]}},'GlobalParameters': {}}";
+
+
+//$.post( "https://ussouthcentral.services.azureml.net/workspaces/46658646c4d84ae1b1eef6d572947420/services/650efb2848c142099e7317ee492f60e8/execute?api-version=2.0&details=true");
+
+
+$.support.cors = true;
+$.ajax({
+   type:"POST",
+    url: 'https://ussouthcentral.services.azureml.net/workspaces/46658646c4d84ae1b1eef6d572947420/services/650efb2848c142099e7317ee492f60e8/execute?api-version=2.0&details=true&callback=?',
+    headers: {
+	     'Access-Control-Allow-Origin': '*',
+		 'crossDomain': true,
+        'Authorization':'9YzgTmt/aWzL4s3hp6DqsSi7Nw5IrsLQ7Dyy6L80DYi4BnDjgtN0hp/ZjEfWzKMj6EcItOsUnb5MEKGuo/WIlQ==',
+        'contentType': 'application/json; charset=utf-8',
+
+    },
+	
+	//contentType: "application/json; charset=utf-8",
+    dataType: 'jsonp',
+	//url: 'http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=demo/',
+    data: JSON.stringify(dataBody),
+    success: function(data){
+	  alert("sucess");
+      console.log('succes: '+JSON.stringify(data));
+    },
+	 error: function(jqXHR){
+	 alert('error: '+jqXHR.status);
+      console.log('error: '+jqXHR.status);
+    }
+  });	
+  
+			
+		/*	 var inputs = document.querySelectorAll("input");
+			 alert(inputs[0].value);
+			
+               var query={instant: +inputs[0].value, dteday: +inputs[1].value,
+                        season: +inputs[2].value, yr: +inputs[3].value, mnth: +inputs[4].value,
+                       hr: +inputs[5].value, holiday: +inputs[6].value,
+                       weekday: +inputs[7].value, workingday:+inputs[8].value,
+                       weathersit: +inputs[9].value,
+                       temp:+inputs[10].value, atemp: +inputs[11].value,
+                       hum: +inputs[12].value,
+                       windspeed: +inputs[13].value,
+                       casual: +inputs[14].value,
+                       registered: +inputs[15].value,
+                       cnt: +inputs[16].value};
+					   
+					   
+			alert(query.length);
+		*/	
+					 
+		}
+	
+	
+		</script>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">SB Admin</a>
+            </div>
+            <!-- Top Menu Items -->
+            
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                    </li>
+                    <li>
+                        <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
+                    </li>
+                    <li class="active">
+                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
+                    </li>
+                    <li>
+                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
+                    </li>
+                    <li>
+                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="#">Dropdown Item</a>
+                            </li>
+                            <li>
+                                <a href="#">Dropdown Item</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
+                    </li>
+                    <li>
+                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Forms
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-edit"></i> Forms
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-6">
+
+                        <form method="POST">
+
+					Day:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="text" name="Day"><br><br>
+					Month:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="Month"><br><br>
+					Workingday:<input type="text" name="Workingday"><br><br>
+					Holiday:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="Holiday"><br><br>
+					Hour:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="Hour"><br><br>
+					Power_Factor:<input type="text" name="Power_Factor"><br><br>
+					Holiday:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="holiday"><br><br>
+					kVARh:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="kVARh"><br><br>
+					Category:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="Category"><br><br>
+					Weathersit:<input type="text" name="weathersit"><br><br>
+					TMAX:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="TMAX"><br><br>
+					TMIN:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="TMIN"><br><br>
+
+
+<input type="button" value="Submit" id="submitButton"/>
+
+</form>
+
+                    </div>
+                    
+
+                                       </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+	
+	
+</body>
+
+</html>
