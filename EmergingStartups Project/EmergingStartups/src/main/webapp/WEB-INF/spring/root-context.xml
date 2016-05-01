@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="userDAO" class="com.aastha.myapp.dao.UserDAO"></bean>
+	<bean id="entrepreneurDAO" class="com.aastha.myapp.dao.EntrepreneurDAO"></bean>
+	<bean id="investorDAO" class="com.aastha.myapp.dao.InvestorDAO"></bean>
+	<bean id="entrepreneurInvestorDAO" class="com.aastha.myapp.dao.EntrepreneurInvestorDAO"></bean>
+	<bean id="dao" class="com.aastha.myapp.dao.DAO"></bean>
+		
+</beans>
